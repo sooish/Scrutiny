@@ -1,0 +1,30 @@
+==== 
+지옥에서 온 GIT
+
+40. PUSH & PULL (My server)
+두대의 컴퓨터 가정(home, offie)
+<home>
+>git remote -v
+
+<office>
+>git remote -v
+두대가 똑같은 원격저장소에 연결돼 있음 확인
+
+<home>
+>git commit -m ""
+>git push
+
+<office>
+>git pull 원격저장소의 내용 로컬 저장소로 땡겨오는 것
+>git log
+작업
+>git push
+
+<home>
+>git pull 안하고 그냥 작업?
+작업후
+>git push
+에러메세지(원격저장소의 것을 pull하여 병합하고 충돌하는 일을 지역 저장소에서 한다음에 원격 저장소로 올리라는
+>git log
+merge commit이 만들어진 것을 볼 수 있음
+>git push

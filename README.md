@@ -3,7 +3,7 @@
 
 프로그래밍 초심자가 다양한 매체를 통해 프로그래밍을 공부해가며 내용을 정리하는 페이지입니다.
 
-[내 깃헙 주소](https://github.com/sooish/Scrutiny/)
+[내 깃헙 주소](https://github.com/sooish/)
 
 * 관계형 데이터베이스 모델링 
   *이고잉 

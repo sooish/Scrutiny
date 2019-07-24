@@ -127,7 +127,7 @@ uploaded in July 2019 by 이고잉
     relation -> pk, fk
 
     ERD -> RDB 로 전환     
-    ER master(ermaster.s        ouceforge.net), 구글스프레드, 엑셀 등 사    용
+    ER master(ermaster.souceforge.net), 구글스프레드, 엑셀 등 사용
 
     entity -> table 만들기(foreign key가 없는 entity부터 만드는게 수월)
     attribute- > column 추가. primary key부터(auto-increment, int 등 제약조건 설정, 즉 도메인 설정) 

@@ -21,8 +21,16 @@ uploaded in FEB 2017~
 
 6. Mac에서 git init하기
 terminal
->cd Documents: Docments 안에 
+>cd Documents: Docments 안에 프로젝트 폴더 만들어라. 
 >ls -al
+>cd gitfth
+>git init
+>ls -al
+>
+
+7.
+>vim f1.txt : vim이라는 프로그램으로 f1.txt라는 파일 편집한다는 뜻
+>i : insert 모드
 
 
 40. PUSH & PULL (My server)

@@ -1,0 +1,141 @@
+=======  DAO, DTO, Entity Class, Controller Class, Service Class  ========
+
+ 
+DTO(Data Transfer Obejct) - dto package
+- 계층간 데이터 교환을 위한 객체
+- 로직을 가지고 있지 않은 순수한 데이터 객체
+- 데이터를 주고 받을 포맷
+
+Controller Class
+- 해당 요청 url에 따라 적절한 view와 매핑처리
+- 적절한 DTO를 body에 담아 client에 반환(return)
+
+Service Class
+- DAO로 DB에 접근, DTO로 데이터 전달받은 다음 비지니스 로직 처리하여 적절한 데이터 반환
+
+DAO(Data Access Obejct) - repository package
+- 실제로 DB에 접근하는 객체
+- Service와 DB 연결고리
+
+Entity Class - domain package
+- 테이블과 링크될 클래스
+- domain logic만 가지고 있어야 하고 presentation logic 가지고 있으면 안된다
+- 여기에서 구현한 메소드는 주로 service layer에서 사용
+
+  * DTO 클래스 / Entity 클래스 분리 이유
+   - View layer, DB layer 역할 철저히 분리하려고
+
+실행순서는 다음과 같다.
+* Client(browser) <-dto-> Controller(web)  <-dto-> Service <-dto-> Repsitory(dao) <-Domain(entity class)-> DB
+
+
+[References]
+https://gmlwjd9405.github.io/2018/12/25/difference-dao-dto-entity.html
+https://lazymankook.tistory.com/30
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+=======  Probono Project Case Study로 DAO DTO 서비스, 컨트롤러 이해하기  =======
+
+1) DTO (Activist, Recipient, Probono, Probono Project) - setter / getter : 데이터를 주고 받을 포맷
+
+2) DAO (Activist, Recipient, Probono, Probono Project) : 실제로 DB에 접근하는 객체
+    저장 / 수정 / 삭제 / 검색 CRUD
+ 
+    <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
+    
+    public static boolean updateProbonoProjectReceive(int probonoProjectId, String receiveId) {
+    Connection con = null
+    Pepared Statement pstmt = null;
+    try { 
+         con.DBUtil.getConnection();
+         pstmt = con.prepareStatement(""update probono_project set receive_id=? where probono_project_id=?");
+         pstmt.setString(1, receiveId);
+			   pstmt.setInt(2, probonoProjectId);
+
+         int result = pstmt.executeUpdate();
+         if (result == 1) {
+         return true};
+         }
+         }finally {
+         DBUtil.close(con.pstmt)
+         }
+         return false;
+         }
+         
+    <예시2> probono id로 검색
+    
+    public static ProbonoDTO getProbono(String probonoId) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ProbonoDTO probono = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select * from probono where probono_id=?");
+			pstmt.setString(1, probonoId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				probono = new ProbonoDTO(rset.getString(1), rset.getString(2), rset.getString(3));
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		} 
+		return probono;
+	}
+  
+3) Serivice Class - CRUD: DAO로 DB에 접근, DTO로 데이터 전달받은 다음 비지니스 로직 처리하여 적절한 데이터 반환
+
+    <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
+    public static void notExistProbono(probonoId) throws SQLException, NotExistException {
+      probono DTO probono = ProbonoDAO.getProbono(probonoId);	
+      if(probono == null){
+        throw new NotExistException("검색하진 재능기부 정보가 없습니다.");
+      }
+    }
+    
+    public static void updateProbono(String probonoId, String receiveID) throws SQLException, NotExistException {
+      notExistProbono(probonoId);
+      return probonoDAO.update(probonoID, receiveId);
+    }
+
+   <예시2> probono id로 검색
+	  public static ProbonoDTO getProbono(String probonoId) throws SQLException, NotExistException{
+      ProbonoDTO probono = ProbonoDAO.getProbono(probonoId);
+      if(probono == null){
+        throw new NotExistException("검색하신 재능기부 정보가 없습니다.");
+      }
+      return probono;
+	  } 
+
+4) Controller Class - 해당 요청 url에 따라 적절한 view와 매핑처리 & 적절한 DTO를 body에 담아 client에 반환(return)
+
+   <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
+    public void updateProbono(String probonoId, String receiveID){	
+      try{
+        service.updateProbono(probonoId, receiveID);
+        RunningEndView.SucessMessage("'" + probonoId + "'" + "가 성공적으로 수정되었습니다.");
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } catch (NotExistException s) {
+        s.printStackTrace();
+        RunningEndView.showError("프로보노 id로 수혜자 정보 변경 오류");		
+	 }
+
+	   <예시2> probono id로 검색
+ 
+    public void getProbono(String probonoId) {
+      try {
+        RunningEndView.allView(service.getProbono(probonoId));
+        RunningEndView.sucessView();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } catch (NotExistException s) {
+        s.printStackTrace();
+      }
+    }
+  
+ 5) 
+     

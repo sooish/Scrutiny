@@ -43,8 +43,7 @@
      저장 / 수정 / 삭제 / 검색 CRUD
  
  
-    <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
-    
+    <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경   
     public static boolean updateProbonoProjectReceive(int probonoProjectId, String receiveId) {
 	    Connection con = null
 	    Pepared Statement pstmt = null;
@@ -65,7 +64,6 @@
      }
          
     <예시2> probono id로 검색
-    
     public static ProbonoDTO getProbono(String probonoId) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -86,7 +84,6 @@
 	}
   
 3) Serivice Class - CRUD: DAO로 DB에 접근, DTO로 데이터 전달받은 다음 비지니스 로직 처리하여 적절한 데이터 반환
-
     <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
     public static void notExistProbono(probonoId) throws SQLException, NotExistException {
       ProbonoDTO probono = ProbonoDAO.getProbono(probonoId);	
@@ -100,8 +97,8 @@
       return ProbonoDAO.update(probonoID, receiveId);
     }
 
-   <예시2> probono id로 검색
-	  public static ProbonoDTO getProbono(String probonoId) throws SQLException, NotExistException{
+    <예시2> probono id로 검색
+    public static ProbonoDTO getProbono(String probonoId) throws SQLException, NotExistException{
       ProbonoDTO probono = ProbonoDAO.getProbono(probonoId);
       if(probono == null){
         throw new NotExistException("검색하신 재능기부 정보가 없습니다.");
@@ -111,7 +108,7 @@
 
 4) Controller Class - 해당 요청 url에 따라 적절한 view와 매핑처리 & 적절한 DTO를 body에 담아 client에 반환(return)
 
-   <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
+    <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
     public void updateProbono(String probonoId, String receiveID){	
       try{
         service.updateProbono(probonoId, receiveID);
@@ -121,17 +118,16 @@
       } catch (NotExistException s) {
         s.printStackTrace();
         RunningEndView.showError("프로보노 id로 수혜자 정보 변경 오류");		
-	 }
-
-	   <예시2> probono id로 검색
- 
-    public void getProbono(String probonoId) {
-      try {
-        RunningEndView.allView(service.getProbono(probonoId));
-        RunningEndView.sucessView();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      } catch (NotExistException s) {
-        s.printStackTrace();
-      }
     }
+
+     <예시2> probono id로 검색
+     public void getProbono(String probonoId) {
+       try {
+         RunningEndView.allView(service.getProbono(probonoId));
+         RunningEndView.sucessView();
+       } catch (SQLException e) {
+        e.printStackTrace();
+       } catch (NotExistException s) {
+        s.printStackTrace();
+       }
+     }

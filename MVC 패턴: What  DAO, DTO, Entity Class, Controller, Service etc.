@@ -89,7 +89,7 @@
 
     <예시1> 프로보노 프로젝트 id로 수혜자 정보 변경
     public static void notExistProbono(probonoId) throws SQLException, NotExistException {
-      probono DTO probono = ProbonoDAO.getProbono(probonoId);	
+      ProbonoDTO probono = ProbonoDAO.getProbono(probonoId);	
       if(probono == null){
         throw new NotExistException("검색하진 재능기부 정보가 없습니다.");
       }

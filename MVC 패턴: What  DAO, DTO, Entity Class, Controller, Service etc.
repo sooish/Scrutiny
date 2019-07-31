@@ -97,7 +97,7 @@
     
     public static void updateProbono(String probonoId, String receiveID) throws SQLException, NotExistException {
       notExistProbono(probonoId);
-      return probonoDAO.update(probonoID, receiveId);
+      return ProbonoDAO.update(probonoID, receiveId);
     }
 
    <예시2> probono id로 검색

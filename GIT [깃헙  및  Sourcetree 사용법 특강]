@@ -70,7 +70,7 @@ local.properties
 - commit message -> commit -> push 
 
 
-3.) 브랜치 생성
+3) 브랜치 생성
 - 소스코드 깃플로우에서 실행 -> 왼편에 develop 생성(초기화 성공한 것이라 보면 됨)
 - 개발할때는 develop에서 하다가 버전이 완성되면 그때 마스터 브랜치로 복사하는 것. master -> branch 수준으로 올라감
 - develop branch, release branch, feature branch 등 상황별/목적별로 사용 가능.

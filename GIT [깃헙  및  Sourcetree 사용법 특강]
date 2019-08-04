@@ -16,16 +16,16 @@ https://github.com/deepmining3825
 - 테스트에 용이함(로컬 저장소: 나만 사용할 수 있음)
 - 책임소재 명확화
 
-3. Git 이란?
+3. Git 
 
-                                        <offline>
+                                                <offline>
 [ woking directory(working space) ] --add--> [ staging area ] --commit--> [ Local Repository ]
                                      <--------checkout / merge---------
 
 
  pull (fetch+merge)                                                               push  fetch clone
-                                         [ remote repository ]
-                                               <online>
+                                          [ remote repository ]
+                                                <online>
 
 4 Sourcetree 프로그램 사용 권장
 - Sourcetree 사용 이점 : 원하는 OS / 개발툴/ 프로그램(이클립스 등) 쓰지 못하는 상황 등에서 유용하게 사용가능
@@ -85,7 +85,7 @@ local.properties
 - 사인업에서 '개발완료'라는 메세지와 함께 수정사항 커밋 
 - 우클릭하면 '커밋 되돌림' 가능
 - 로그인에서 '개발완료'라는 메세지와 함께 수정사항 커밋  
-- develop에 합쳐야 하는데, 이때 충돌 가능성이 많음. 따라서 매일 매일 develop 브랜치와 병합하는것이 바람직하다.
+- develop에 합쳐야 하는데, 이때 충돌 가능성이 많음. 따라서 한꺼번 하는 대신 매일 develop 브랜치와 병합하는것이 바람직하다.
 - 로그인에서 우클리으로 디벨롭을 가져옴
 - 디벨롭에서 병합. 이때 디벨롭에 로그인 클래스 생긴것을 볼 수 있음
 

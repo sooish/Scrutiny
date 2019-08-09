@@ -1,0 +1,9 @@
+1. JSP
+  - 서버프로그래밍 언어
+  - 홈페이지에 회원가입, 로그인, 게시판 등 넣을때 사용
+  - 자바 언어 사용 -> jdk 필요 : jdk 다운로드
+  - JSP 실행할 수 있는 웹서버 구축 필요 : Tomcat 다운로드
+  - JSP 웹사이트 개발 환경 필요 : Eclipse 다운로드
+  
+   jsp는 동적 web proejct : dynamic web projct 만들어야
+   

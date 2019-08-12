@@ -7,3 +7,6 @@
   
    jsp는 동적 web proejct : dynamic web projct 만들어야
    
+2.
+    <script>location href = login.jsp;</script>
+
